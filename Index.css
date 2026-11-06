@@ -130,12 +130,10 @@
     font-size: x-large;
 }
 
-.heroimage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90%;
-    height: 90%;
-    z-index: -1;
-    object-fit: cover;
+  .heroimage img {
+    width: 80%;        /* fill the container, which is capped below */
+    max-width: 600px;   /* never bigger than this on desktop */
+    height: auto;       /* keeps the proportions */
+    display: block;
+    margin: 0 auto;     /* centres it */
 }
