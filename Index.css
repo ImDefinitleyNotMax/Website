@@ -122,22 +122,25 @@
     * { transition: none !important; }
   }
   
+
+
   .hero {
-    position: relative;      /* the text will be positioned against this box */
-    max-width: 95%;        /* controls the image size */
-    margin-top: 1%;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    width: 100%;                 /* full width instead of the 600px cap */
+    height: clamp(320px, 70vh, 800px);
+    
+    overflow: hidden;
 }
 
 .hero img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 36px;
-  filter: brightness(0.6);
-  
+    width: 95%;
+    height: 95%;                /* fills the box instead of using its own height */
+    object-fit: cover;           /* crops to fit rather than stretching */
+    object-position: center;     /* which part stays visible */
+    display: block;
+    border-radius: 36px;
+    filter: brightness(0.7);
+    margin: auto;
 }
 
 .hero-text {
@@ -150,4 +153,12 @@
     align-items: center;     /* horizontal centre */
     text-align: center;
     color: rgb(255, 244, 210);            /* make sure it's readable on the image */
+}
+
+.hero-text h1 {
+  font-size: clamp(1.75rem, 6vw, 4rem);
+}
+
+.hero-text h2 {
+  font-size: clamp(1rem, 3vw, 1.75rem);
 }
