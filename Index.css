@@ -130,10 +130,7 @@
     font-size: x-large;
 }
 
-  .heroimage img {
-    width: 80%;        /* fill the container, which is capped below */
-    max-width: 600px;   /* never bigger than this on desktop */
-    height: auto;       /* keeps the proportions */
+  .heroimage {
     display: block;
-    margin: 0 auto;     /* centres it */
+    z-index: -1;
 }
