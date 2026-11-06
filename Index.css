@@ -186,6 +186,8 @@
   border-bottom: #14161a;
   border-bottom-style: solid;
  border-bottom-width: 0.5rem;
+ max-width: 50%;
+ margin: auto;
 
 }
 
