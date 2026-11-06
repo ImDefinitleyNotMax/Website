@@ -210,6 +210,9 @@
   display: block;
 }
 
+.About-Me-Collage img:nth-child(1) { object-position: 80% 50%; }
+.About-Me-Collage img:nth-child(3) { object-position: 52% 50%; }
+
 @media (max-width: 700px) {
   .About-Section {
     grid-template-columns: 1fr;     /* collage drops below the card */
