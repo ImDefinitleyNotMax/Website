@@ -163,7 +163,17 @@
   font-size: clamp(1rem, 3vw, 1.75rem);
 }
 
-.About-Me
+.About-Me {
+  background-color: #fff4d2;
+  max-width: 50%;
+  max-height: fit-content;
+  object-fit: cover;
+  object-position: left;
+  margin-top : 2rem;
+  margin-left: 5%;
+  border-radius: 24px;
+  
+}
 
 .About-Me-Header {
   object-fit: cover;
@@ -171,19 +181,21 @@
   font-size: clamp(0.8rem, 3vw, 1.5rem);
   color: #ff8800;
   text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+  border-bottom: #14161a;
+  border-bottom-style: solid;
+ border-bottom-width: 0.5rem;
 
-  margin-top: 2rem;
-  margin-left: 5%;
- 
-  
- border-bottom: #fff4d2;
- border-width: 0.5rem;
- border-color: #fff4d2;
- border-bottom-style: solid;
- 
-  max-width: 50%;
-  max-height: fit-content;
+}
 
- 
-
+.About-Me-Body {
+  object-fit: cover;
+  object-position: left;
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  color: #14161a;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0% 5% 5% 5%;
 }
