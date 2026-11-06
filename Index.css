@@ -210,14 +210,12 @@
   display: block;
 }
 
+.hero img { object-position: 10% 50%; }
+
 .About-Me-Collage img:nth-child(1) { object-position: 80% 50%; }
 .About-Me-Collage img:nth-child(3) { object-position: 52% 50%; }
 
 @media (max-width: 700px) {
-  .About-Section {
-    grid-template-columns: 1fr;     /* collage drops below the card */
-  }
-
   .dropdown {
     position: static;           /* sits in the list instead of floating */
     opacity: 1;
@@ -228,12 +226,12 @@
     min-width: 0;
     margin: 0 0 4px 12px;       /* indent under Portfolio */
     padding: 0 0 0 8px;
-    border-left: 2px solid rgba(255, 255, 255, 0.12);   /* thin line shows they belong to Portfolio */
+    border-left: 2px solid rgba(255, 255, 255, 0.12);
   }
 
   .dropdown a {
     padding: 10px 12px;
-    font-size: 0.95rem;         /* slightly smaller than the main items */
+    font-size: 0.95rem;
   }
 }
 
