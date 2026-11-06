@@ -174,10 +174,13 @@
 
   margin-top: 2rem;
   margin-left: 5%;
+ 
   
-  text-decoration: underline;
-
-
+ border-bottom: #fff4d2;
+ border-width: 0.5rem;
+ border-color: #fff4d2;
+ border-bottom-style: solid;
+ 
   max-width: 50%;
   max-height: fit-content;
 
