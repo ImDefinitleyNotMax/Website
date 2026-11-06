@@ -217,6 +217,24 @@
   .About-Section {
     grid-template-columns: 1fr;     /* collage drops below the card */
   }
+
+  .dropdown {
+    position: static;           /* sits in the list instead of floating */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+    min-width: 0;
+    margin: 0 0 4px 12px;       /* indent under Portfolio */
+    padding: 0 0 0 8px;
+    border-left: 2px solid rgba(255, 255, 255, 0.12);   /* thin line shows they belong to Portfolio */
+  }
+
+  .dropdown a {
+    padding: 10px 12px;
+    font-size: 0.95rem;         /* slightly smaller than the main items */
+  }
 }
 
 .menu li { position: relative; }
