@@ -178,6 +178,24 @@
   text-align: center;
 }
 
+.About-Me-Header {
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  color: #ff8800;
+  text-align: center;
+  padding-top: 1rem;
+  border-bottom: 0.5rem solid #14161a;   /* the underline */
+  max-width: 50%;                        /* underline is half the card's width */
+  margin: auto;                          /* centres it */
+}
+
+.About-Me-Body {
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  color: #14161a;
+  text-align: center;
+  padding: 0rem 0;
+  margin: 0 5% 5% 5%;
+}
+
 .About-Me-Collage {
   display: grid;
   grid-template-columns: 1fr 1fr;
