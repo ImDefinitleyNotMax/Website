@@ -152,7 +152,7 @@
     justify-content: center; /* vertical centre */
     align-items: center;     /* horizontal centre */
     text-align: center;
-    color: rgb(255, 244, 210);            /* make sure it's readable on the image */
+    color: #fff4d2;            /* make sure it's readable on the image */
 }
 
 .hero-text h1 {
@@ -161,4 +161,26 @@
 
 .hero-text h2 {
   font-size: clamp(1rem, 3vw, 1.75rem);
+}
+
+.About-Me
+
+.About-Me-Header {
+  object-fit: cover;
+  object-position: left;
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  color: #ff8800;
+  text-align: center;
+
+  margin-top: 2rem;
+  margin-left: 5%;
+  
+  text-decoration: underline;
+
+
+  max-width: 50%;
+  max-height: fit-content;
+
+ 
+
 }
