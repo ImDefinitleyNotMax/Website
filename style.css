@@ -1,213 +1,211 @@
-
-
 /* Menu Bar */
 
 :root {
-    --bg: #14161a;
-    --text: #e8e6e1;
-    --muted: #9a9a96;
-    --accent: #e0b24a;
-    --bar-height: 64px;
-  }
-  
-  * { box-sizing: border-box; }
-  
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: #f2f2f0;
-    color: #222;
-  }
-  
-  /* ---------- Menu bar ---------- */
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--bar-height);
-    padding: 0 24px;
-    background: var(--bg);
-  }
-  
-  .logo {
-    color: var(--text);
-    font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-  }
-  
+  --bg: #14161a;
+  --text: #e8e6e1;
+  --muted: #9a9a96;
+  --accent: #e0b24a;
+  --bar-height: 64px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #1c1c1c;
+  color: var(--text);
+}
+
+/* ---------- Menu bar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--bar-height);
+  padding: 0 24px;
+  background: var(--bg);
+}
+
+.logo {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  display: block;
+  padding: 10px 16px;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.menu a:hover,
+.menu a:focus-visible,
+.menu a.active {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.menu a.active { box-shadow: inset 0 -2px 0 var(--accent); }
+
+a:focus-visible, .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Hamburger (mobile only) ---------- */
+.toggle { position: absolute; opacity: 0; pointer-events: none; }
+
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* ---------- Mobile layout ---------- */
+@media (max-width: 700px) {
+  .burger { display: flex; }
+
   .menu {
-    display: flex;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  
-  .menu a {
-    display: block;
-    padding: 10px 16px;
-    color: var(--muted);
-    text-decoration: none;
-    border-radius: 6px;
-    transition: color 0.2s, background 0.2s;
-  }
-  
-  .menu a:hover,
-  .menu a:focus-visible,
-  .menu a.active {
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.08);
-  }
-  
-  .menu a.active { box-shadow: inset 0 -2px 0 var(--accent); }
-  
-  a:focus-visible, .burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  
-  /* ---------- Hamburger (mobile only) ---------- */
-  .toggle { position: absolute; opacity: 0; pointer-events: none; }
-  
-  .burger {
-    display: none;
-    width: 44px;
-    height: 44px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    top: var(--bar-height);
+    left: 0;
+    right: 0;
     flex-direction: column;
-    gap: 5px;
+    gap: 0;
+    padding: 8px 16px 16px;
+    background: var(--bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
   }
-  
-  .burger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--text);
-    transition: transform 0.25s, opacity 0.25s;
-  }
-  
-  /* ---------- Mobile layout ---------- */
-  @media (max-width: 700px) {
-    .burger { display: flex; }
-  
-    .menu {
-      position: absolute;
-      top: var(--bar-height);
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      gap: 0;
-      padding: 8px 16px 16px;
-      background: var(--bg);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      display: none;
-    }
-  
-    .menu a { padding: 14px 12px; font-size: 1.05rem; }
-  
-    .toggle:checked ~ .menu { display: flex; }
-  
-    .toggle:checked ~ .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
-    .toggle:checked ~ .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  
-    .toggle:focus-visible ~ .burger { outline: 2px solid var(--accent); }
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-  }
-  
+
+  .menu a { padding: 14px 12px; font-size: 1.05rem; }
+
+  .toggle:checked ~ .menu { display: flex; }
+
+  .toggle:checked ~ .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+  .toggle:checked ~ .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .toggle:focus-visible ~ .burger { outline: 2px solid var(--accent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
 
 
-  .hero {
-    position: relative;
-    width: 100%;                 /* full width instead of the 600px cap */
-    height: clamp(320px, 70vh, 800px);
-    
-    overflow: hidden;
+
+.hero {
+  position: relative;
+  width: 100%;                 /* full width instead of the 600px cap */
+  height: clamp(320px, 70vh, 800px);
+  
+  overflow: hidden;
 }
 
 .hero img {
-    width: 95%;
-    height: 95%;                /* fills the box instead of using its own height */
-    object-fit: cover;           /* crops to fit rather than stretching */
-    object-position: center;     /* which part stays visible */
-    display: block;
-    border-radius: 36px;
-    filter: brightness(0.7);
-    margin: auto;
+  width: 95%;
+  height: 95%;                /* fills the box instead of using its own height */
+  object-fit: cover;           /* crops to fit rather than stretching */
+  object-position: center;     /* which part stays visible */
+  display: block;
+  border-radius: 36px;
+  filter: brightness(0.7);
+  margin: auto;
 }
 
 .hero-text {
-    position: absolute;
-    inset: 0;                /* stretches over the whole image */
-    display: flex;
-    font-size: xx-large;
-    flex-direction: column;
-    justify-content: center; /* vertical centre */
-    align-items: center;     /* horizontal centre */
-    text-align: center;
-    color: #fff4d2;            /* make sure it's readable on the image */
+  position: absolute;
+  inset: 0;                /* stretches over the whole image */
+  display: flex;
+  font-size: xx-large;
+  flex-direction: column;
+  justify-content: center; /* vertical centre */
+  align-items: center;     /* horizontal centre */
+  text-align: center;
+  color: #fff4d2;            /* make sure it's readable on the image */
 }
 
 .hero-text h1 {
-  font-size: clamp(1.75rem, 6vw, 4rem);
+font-size: clamp(1.75rem, 6vw, 4rem);
 }
 
 .hero-text h2 {
-  font-size: clamp(1rem, 3vw, 1.75rem);
+font-size: clamp(1rem, 3vw, 1.75rem);
 }
 
 .About-Section {
-  display: grid;
-  grid-template-columns: 3fr 2fr;   /* card about 60%, collage about 40% */
-  gap: 2rem;
-  align-items: start;
-  padding: 0 5%;
-  margin-top: 2rem;
+display: grid;
+grid-template-columns: 3fr 2fr;   /* card about 60%, collage about 40% */
+gap: 2rem;
+align-items: start;
+padding: 0 5%;
+margin-top: 2rem;
 }
 
 .About-Me {
-  background-color: #fff4d2;        /* only the card gets the off-white background */
-  border-radius: 24px;
-  text-align: center;
+background-color: #fff4d2;        /* only the card gets the off-white background */
+border-radius: 24px;
+text-align: center;
 }
 
 .About-Me-Header {
-  font-size: clamp(0.8rem, 3vw, 1.5rem);
-  color: #ff8800;
-  text-align: center;
-  padding-top: 1rem;
-  border-bottom: 0.5rem solid #14161a;   /* the underline */
-  max-width: 50%;                        /* underline is half the card's width */
-  margin: auto;                          /* centres it */
+font-size: clamp(0.8rem, 3vw, 1.5rem);
+color: #ff8800;
+text-align: center;
+padding-top: 1rem;
+border-bottom: 0.5rem solid #14161a;   /* the underline */
+max-width: 50%;                        /* underline is half the card's width */
+margin: auto;                          /* centres it */
 }
 
 .About-Me-Body {
-  font-size: clamp(0.8rem, 3vw, 1.5rem);
-  color: #14161a;
-  text-align: center;
-  padding: 0rem 0;
-  margin: 0 5% 5% 5%;
+font-size: clamp(0.8rem, 3vw, 1.5rem);
+color: #14161a;
+text-align: center;
+padding: 0rem 0;
+margin: 0 5% 5% 5%;
 }
 
 .About-Me-Collage {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 0.75rem;
 }
 
 .About-Me-Collage img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
+width: 100%;
+aspect-ratio: 1 / 1;
+object-fit: cover;
+border-radius: 12px;
+display: block;
 }
 
 .hero img { object-position: 10% 50%; }
@@ -215,23 +213,60 @@
 .About-Me-Collage img:nth-child(1) { object-position: 80% 50%; }
 .About-Me-Collage img:nth-child(3) { object-position: 52% 50%; }
 
+/* ---------- Dropdown (desktop: appears on hover) ---------- */
+.menu li { position: relative; }
+
+.dropdown {
+position: absolute;
+top: 100%;
+left: 0;
+min-width: 190px;
+margin: 0;
+padding: 8px;
+list-style: none;
+background: var(--bg);
+border-radius: 8px;
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+opacity: 0;
+visibility: hidden;
+transform: translateY(-4px);
+transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown {
+opacity: 1;
+visibility: visible;
+transform: none;
+}
+
+/* Stop the sticky menu bar covering the top of a section when jumping to it */
+[id] { scroll-margin-top: var(--bar-height); }
+
+/* ---------- Mobile overrides: this block must stay LAST in the file ---------- */
 @media (max-width: 700px) {
 
-  /* Stack the About section: card on top, collage underneath */
-  .About-Section {
-    grid-template-columns: 1fr;
-  }
+/* Stack the About section: card on top, collage underneath */
+.About-Section {
+  grid-template-columns: 1fr;
+}
 
-  .menu li { position: relative; }
+/* Dropdown options sit indented under Portfolio and push the items below them down */
+.dropdown {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+  min-width: 0;
+  margin: 0 0 4px 12px;
+  padding: 0 0 0 8px;
+  border-left: 2px solid rgba(255, 255, 255, 0.12);
+}
 
-  .dropdown { ... }
-  
-  .has-dropdown:hover .dropdown,
-  .has-dropdown:focus-within .dropdown { ... }
-  
-  @media (max-width: 700px) {
-    .About-Section { ... }
-    .dropdown { position: static; ... }
-    .dropdown a { ... }
-  }
-
+.dropdown a {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+}
