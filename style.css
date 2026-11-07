@@ -351,8 +351,10 @@ transform: none;
   margin: 6rem auto 0;
   width: 90%;
   padding: 1.5rem 0;
-  background-color: #fff4d2;
-  overflow: hidden;              /* hides logos that are outside the banner */
+  background-color:#14161a;
+  overflow: hidden;        
+  margin-bottom: 6rem;      /* hides logos that are outside the banner */
+  border-radius: 24px;
 }
 
 .clients-track {
@@ -374,7 +376,7 @@ transform: none;
   height: clamp(60px, 10vw, 110px);
   width: auto;
   margin-right: clamp(2rem, 6vw, 5rem);   /* spacing uses margin (not gap) so the loop is seamless */
-  filter: saturate(0) brightness(0.8);   /* logos are greyed out */
+  filter: saturate(0) brightness(1.5);   /* logos are greyed out */
 }
 
 @keyframes clients-scroll {
