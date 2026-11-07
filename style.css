@@ -161,6 +161,35 @@ font-size: clamp(1.75rem, 6vw, 4rem);
 font-size: clamp(1rem, 3vw, 1.75rem);
 }
 
+.hero-text button {
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:bold;
+  padding: 0.5rem 1rem;
+  margin-top: 3rem;
+  border-radius: 12px;
+  border: none;
+  background-color:#fff4d2;
+  color: #14161a;
+  cursor: pointer;
+}
+
+.hero-text button:hover {
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:bold;
+  padding: 0.5rem 1rem;
+  color: #fff4d2;
+  margin-top: 3rem;
+  border-radius: 10px;
+  border-width: 5rem;
+  border-style: solid;
+  border:#fff4d2;
+  border-color: #fff4d2;
+  background-color: #14161a;
+  cursor: pointer;
+}
+
 .About-Section {
 display: grid;
 grid-template-columns: 3fr 2fr;   /* card about 60%, collage about 40% */
