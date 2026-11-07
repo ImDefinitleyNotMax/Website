@@ -161,37 +161,31 @@ font-size: clamp(1.75rem, 6vw, 4rem);
 font-size: clamp(1rem, 3vw, 1.75rem);
 }
 
-.hero-text button {
+.hero-text .btn {
+  display: inline-block;           /* lets the padding and margin work on a link */
   font-size: clamp(0.8rem, 3vw, 1.5rem);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
+  text-decoration: none;           /* removes the underline */
   padding: 0.5rem 1rem;
   margin-top: 3rem;
+  border: 0.3rem solid transparent;   /* same width as on hover, so the button doesn't resize */
   border-radius: 12px;
-  border: 2px solid transparent;    /* invisible for now, so hover doesn't resize the button */
   background-color: #fff4d2;
   color: #14161a;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, border-radius 0.2s;
 }
 
-.hero-text button:hover,
-.hero-text button:focus-visible {
+.hero-text .btn:visited {
+  color: #14161a;                  /* stops the purple after the link has been visited */
+}
+
+.hero-text .btn:hover,
+.hero-text .btn:focus-visible {
   background-color: transparent;
   color: #fff4d2;
   border-color: #fff4d2;
-  border-radius: 0px;
-  border-width: 0.3rem;
-  text-decoration: none;
-}
-
-.hero-text a {
-  text-decoration: none;
-}
-
-.hero-text a:hover,{
-  text-decoration: none;
+  border-radius: 0;
 }
 
 .About-Section {
