@@ -243,30 +243,77 @@ transform: none;
 /* Stop the sticky menu bar covering the top of a section when jumping to it */
 [id] { scroll-margin-top: var(--bar-height); }
 
+/* Mobile-only controls are hidden on desktop */
+.sub-toggle { display: none; }
+.portfolio-label { display: none; }
+
 /* ---------- Mobile overrides: this block must stay LAST in the file ---------- */
 @media (max-width: 700px) {
 
-/* Stack the About section: card on top, collage underneath */
-.About-Section {
-  grid-template-columns: 1fr;
-}
+  /* Stack the About section: card on top, collage underneath */
+  .About-Section {
+    grid-template-columns: 1fr;
+  }
 
-/* Dropdown options sit indented under Portfolio and push the items below them down */
-.dropdown {
-  position: static;
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  box-shadow: none;
-  background: transparent;
-  min-width: 0;
-  margin: 0 0 4px 12px;
-  padding: 0 0 0 8px;
-  border-left: 2px solid rgba(255, 255, 255, 0.12);
-}
+  /* Portfolio: on mobile it is a button that expands the two pages */
+  .menu .portfolio-link { display: none; }
 
-.dropdown a {
-  padding: 10px 12px;
-  font-size: 0.95rem;
-}
+  .sub-toggle {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .portfolio-label {
+    display: block;
+    padding: 14px 12px;
+    font-size: 1.05rem;
+    color: var(--muted);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .portfolio-label::after {
+    content: "\25BE";               /* small down arrow */
+    display: inline-block;
+    margin-left: 0.5em;
+    transition: transform 0.2s;
+  }
+
+  .portfolio-label:hover,
+  .portfolio-label.active,
+  .sub-toggle:checked ~ .portfolio-label {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .portfolio-label.active { box-shadow: inset 0 -2px 0 var(--accent); }
+
+  .sub-toggle:checked ~ .portfolio-label::after { transform: rotate(180deg); }
+
+  .sub-toggle:focus-visible ~ .portfolio-label { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Hidden until Portfolio is tapped; once open it pushes the items below it down */
+  .dropdown {
+    display: none;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+    min-width: 0;
+    margin: 0 0 4px 12px;
+    padding: 0 0 0 8px;
+    border-left: 2px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .sub-toggle:checked ~ .dropdown { display: block; }
+
+  .dropdown a {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
 }

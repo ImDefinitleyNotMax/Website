@@ -19,12 +19,14 @@
     <ul class="menu">
       <li><a href="index.html">Home</a></li>
       <li class="has-dropdown">
-        <a href="cinematography.html" class="active">Portfolio</a>
-        <ul class="dropdown">
-          <li><a href="cinematography.html">Cinematography</a></li>
-          <li><a href="photography.html">Photography</a></li>
-        </ul>
-      </li>
+            <input type="checkbox" id="portfolio-toggle" class="sub-toggle" aria-label="Show portfolio pages">
+            <a href="cinematography.html" class="portfolio-link active">Portfolio</a>
+            <label for="portfolio-toggle" class="portfolio-label active">Portfolio</label>
+            <ul class="dropdown">
+              <li><a href="cinematography.html">Cinematography</a></li>
+              <li><a href="photography.html">Photography</a></li>
+            </ul>
+          </li>
       <li><a href="index.html#about">About me</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
