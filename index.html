@@ -70,22 +70,57 @@
 
     <!-- Clients -->
     
-    <div class="banner">
-      
+    <div class="clients-block" aria-label="Clients">
+      <div class="clients-track">
+        <img src="Assets/Clients/belfastmetlogo.png" alt="Belfast Metropolitan College">
+        <img src="Assets/Clients/rtslogo.png" alt="Royal Television Society">
+        <img src="Assets/Clients/sbclogo.png" alt="Strandtown Baptist Church">
+        <img src="Assets/Clients/crumlinpre.png" alt="Crumlin Pre-school">
+        <img src="Assets/Clients/actorshublogo.png" alt="Actors Hub Belfast">
+        <!-- add more logos here, one <img> each. The script below handles the looping -->
+      </div>
     </div>
 
+    <script>
+      // Repeats the logos enough times that the banner never has gaps, then starts the scroll
+      (function () {
+        var block = document.querySelector('.clients-block');
+        var track = document.querySelector('.clients-track');
+        if (!block || !track) return;
 
+        var originals = Array.prototype.slice.call(track.children);
+        var SPEED = 60; // pixels per second, raise it for a faster scroll
 
-    <div class="clients-block">
-      <img src="Assets/Clients/belfastmetlogo.png" alt="">
-      <img src="Assets/Clients/rtslogo.png" alt="">
-    </div>
+        function build() {
+          track.classList.remove('is-ready');
+          Array.prototype.slice.call(track.querySelectorAll('[data-clone]')).forEach(function (c) { c.remove(); });
 
+          var setWidth = track.scrollWidth;                       // width of one full set of logos
+          var copies = Math.ceil(block.clientWidth / setWidth);   // extra sets needed to fill the banner
 
+          for (var i = 0; i < copies; i++) {
+            originals.forEach(function (img) {
+              var clone = img.cloneNode(true);
+              clone.alt = '';
+              clone.setAttribute('aria-hidden', 'true');
+              clone.setAttribute('data-clone', '');
+              track.appendChild(clone);
+            });
+          }
 
+          track.style.setProperty('--set-width', setWidth + 'px');
+          track.style.animationDuration = (setWidth / SPEED) + 's';
+          track.classList.add('is-ready');
+        }
 
-
-
+        var timer;
+        window.addEventListener('load', build);
+        window.addEventListener('resize', function () {
+          clearTimeout(timer);
+          timer = setTimeout(build, 150);
+        });
+      })();
+    </script>
 </body>
 
 </html>

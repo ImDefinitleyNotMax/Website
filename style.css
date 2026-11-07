@@ -345,25 +345,44 @@ transform: none;
   }
 }
 
-/* clients Section */ 
+/* clients Section */
 
 .clients-block {
-  margin-top: 6rem;
-  position: center;
+  margin: 6rem auto 0;
   width: 90%;
-  height: clamp(10px, 40vh, 300px);
+  padding: 1.5rem 0;
   background-color: #fff4d2;
-  margin-left: auto;
-  margin-right: auto;
-  max-height: fit-content;
+  overflow: hidden;              /* hides logos that are outside the banner */
 }
 
-.clients-block img {
-width: 20%;
-aspect-ratio: 1 / 1;
-display: grid;
-max-width: 90%;
-max-height: 90%;
-margin-left: auto;
-margin-right: auto;
+.clients-track {
+  display: flex;
+  align-items: center;
+  width: max-content;            /* track is as wide as all the logos in a row */
+}
+
+.clients-track.is-ready {
+  animation: clients-scroll 20s linear infinite;   /* duration is set by the script */
+}
+
+.clients-block:hover .clients-track {
+  animation-play-state: paused;  /* pauses while the mouse is over the banner */
+}
+
+.clients-track img {
+  flex: 0 0 auto;                /* logos never shrink to fit */
+  height: clamp(60px, 10vw, 110px);
+  width: auto;
+  margin-right: clamp(2rem, 6vw, 5rem);   /* spacing uses margin (not gap) so the loop is seamless */
+  filter: saturate(0) brightness(0.8);   /* logos are greyed out */
+}
+
+@keyframes clients-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(var(--set-width) * -1)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-track.is-ready { animation: none; }
+  .clients-track [data-clone] { display: none; }
 }
