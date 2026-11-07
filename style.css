@@ -164,30 +164,34 @@ font-size: clamp(1rem, 3vw, 1.75rem);
 .hero-text button {
   font-size: clamp(0.8rem, 3vw, 1.5rem);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight:bold;
+  font-weight: bold;
   padding: 0.5rem 1rem;
   margin-top: 3rem;
   border-radius: 12px;
-  border: none;
-  background-color:#fff4d2;
+  border: 2px solid transparent;    /* invisible for now, so hover doesn't resize the button */
+  background-color: #fff4d2;
   color: #14161a;
   cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  text-decoration: none;
 }
 
-.hero-text button:hover {
-  font-size: clamp(0.8rem, 3vw, 1.5rem);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight:bold;
-  padding: 0.5rem 1rem;
+.hero-text button:hover,
+.hero-text button:focus-visible {
+  background-color: transparent;
   color: #fff4d2;
-  margin-top: 3rem;
-  border-radius: 10px;
-  border-width: 5rem;
-  border-style: solid;
-  border:#fff4d2;
   border-color: #fff4d2;
-  background-color: #14161a;
-  cursor: pointer;
+  border-radius: 0px;
+  border-width: 0.3rem;
+  text-decoration: none;
+}
+
+.hero-text a {
+  text-decoration: none;
+}
+
+.hero-text a:hover,{
+  text-decoration: none;
 }
 
 .About-Section {
