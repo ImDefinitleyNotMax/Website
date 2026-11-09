@@ -415,13 +415,15 @@ transform: none;
   max-width: 1200px;
   margin: 2rem auto 3rem;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);   /* 12 columns so rows of 3 and 4 both fill the full width */
+  grid-template-columns: repeat(12, minmax(0, 1fr));   /* minmax(0, ...) stops big images stretching the columns */
   gap: 8px;
 }
 
 .shot-collage img {
   display: block;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   height: auto;
   aspect-ratio: 2.4 / 1;          /* every frame keeps its widescreen shape */
   object-fit: cover;              /* only trims a sliver if a file is a hair off 2.40 */
@@ -429,9 +431,11 @@ transform: none;
 }
 
 /* Desktop layout: 3 images, then 4, then 3 */
-.shot-collage img:nth-child(-n+3),
-.shot-collage img:nth-child(n+8) { grid-column: span 4; }
-.shot-collage img:nth-child(n+4):nth-child(-n+7) { grid-column: span 3; }
+@media (min-width: 701px) {
+  .shot-collage img:nth-child(-n+3),
+  .shot-collage img:nth-child(n+8) { grid-column: span 4; }
+  .shot-collage img:nth-child(n+4):nth-child(-n+7) { grid-column: span 3; }
+}
 
 /* Phone layout: rows of 2, 3, 2, 3 */
 @media (max-width: 700px) {
@@ -467,4 +471,3 @@ transform: none;
   border: none;
   border-radius: 12px;
 }
-
