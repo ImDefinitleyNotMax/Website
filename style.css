@@ -195,12 +195,15 @@ gap: 2rem;
 align-items: start;
 padding: 0 5%;
 margin-top: 2rem;
+margin-bottom: 2rem;
 }
 
 .About-Me {
 background-color: #fff4d2;        /* only the card gets the off-white background */
 border-radius: 24px;
 text-align: center;
+margin-bottom: 2rem;
+margin-top: 2rem;
 }
 
 .About-Me-Header {
@@ -322,6 +325,8 @@ transform: none;
 
   .sub-toggle:focus-visible ~ .portfolio-label { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+  
+
   /* Hidden until Portfolio is tapped; once open it pushes the items below it down */
   .dropdown {
     display: none;
@@ -348,7 +353,7 @@ transform: none;
 /* clients Section */
 
 .clients-block {
-  margin: 6rem auto 0;
+  margin:  4rem;
   width: 90%;
   padding: 1.5rem 0;
   background-color:#14161a;
@@ -470,4 +475,44 @@ transform: none;
   aspect-ratio: 16 / 9;
   border: none;
   border-radius: 12px;
+}
+
+
+/*  Contact Section */
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #1c1c1c; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #e0b24a;
+  color: #1c1c1c;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #a68537;
+}
+
+/* Add a background color and some padding around the form */
+.contact-form {
+  border-radius: 5px;
+  background-color: #14161a;
+  padding: 20px;
+  max-width: 60%;
+  margin: auto;
+  margin-top: 2rem;
 }
