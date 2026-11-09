@@ -32,7 +32,7 @@
                 </ul>
               </li>
           <li><a href="index.html#about">About me</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
       </nav>
 
@@ -40,7 +40,8 @@
         Contact Form
       -->
       <div class="contact-form">
-        <form action="action_page.php" autocomplete="on">
+        <form action="https://api.web3forms.com/submit" method="POST" autocomplete="on">
+            <input type="hidden" name="access_key" value="40edd99c-5668-4c21-a4bc-02ecb37ada30">
 
             <label for="fname">First Name</label>
             <input type="text" id="fname" name="firstname" placeholder="Your name..">
@@ -51,16 +52,16 @@
             <label for="lname">E-Mail Adress</label>
             <input type="text" id="lname" name="lastname" placeholder="Enter your E-Mail..">
         
-            <label for="country">Reason</label>
-            <select id="country" name="country">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
               <option value="cinematography">Cinematography</option>
               <option value="photography">Photography</option>
               <option value="colour grading">Colour Grading</option>
               <option value="other">Other</option>
             </select>
         
-            <label for="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            <label for="content">Content</label>
+            <textarea id="content" name="content" placeholder="Write something.." style="height:200px"></textarea>
         
             <input type="submit" value="Submit">
         
