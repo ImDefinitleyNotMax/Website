@@ -388,3 +388,83 @@ transform: none;
   .clients-track.is-ready { animation: none; }
   .clients-track [data-clone] { display: none; }
 }
+
+
+
+/* Cinematography Section */
+
+.cinematographyheader h1 {
+  font-size: clamp(1.75rem, 6vw, 4rem);
+  text-align: center;
+  margin-top: 2rem;
+  color: #1c1c1c;
+}
+
+.cinematographyheader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: #fff4d2;
+  margin-top: 2.5%;
+}
+
+/* ---------- Cinematography collage ---------- */
+.shot-collage {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem auto 3rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);   /* 12 columns so rows of 3 and 4 both fill the full width */
+  gap: 8px;
+}
+
+.shot-collage img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2.4 / 1;          /* every frame keeps its widescreen shape */
+  object-fit: cover;              /* only trims a sliver if a file is a hair off 2.40 */
+  border-radius: 6px;
+}
+
+/* Desktop layout: 3 images, then 4, then 3 */
+.shot-collage img:nth-child(-n+3),
+.shot-collage img:nth-child(n+8) { grid-column: span 4; }
+.shot-collage img:nth-child(n+4):nth-child(-n+7) { grid-column: span 3; }
+
+/* Phone layout: rows of 2, 3, 2, 3 */
+@media (max-width: 700px) {
+  .shot-collage { gap: 6px; }
+  .shot-collage img:nth-child(1),
+  .shot-collage img:nth-child(2),
+  .shot-collage img:nth-child(6),
+  .shot-collage img:nth-child(7) { grid-column: span 6; }
+  .shot-collage img:nth-child(3),
+  .shot-collage img:nth-child(4),
+  .shot-collage img:nth-child(5),
+  .shot-collage img:nth-child(8),
+  .shot-collage img:nth-child(9),
+  .shot-collage img:nth-child(10) { grid-column: span 4; }
+}
+
+.showreel-cinematography {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.showreel-cinematography-title {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff4d2;
+}
+.showreel-cinematography iframe {
+  width: 90%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 12px;
+}
+
