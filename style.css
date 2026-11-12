@@ -517,3 +517,83 @@ input[type=submit]:hover {
   margin: auto;
   margin-top: 2rem;
 }
+
+/* STRANDTOWN BAPTIST CHURCH QIUZZ SECTION */
+
+.sbctitle {
+  position: relative;
+  width: 100%;                 /* full width instead of the 600px cap */
+  height: clamp(320px, 70vh, 800px);
+  
+  overflow: hidden;
+}
+
+.sbctitle h1 {
+  position: absolute;
+  inset: 0;                /* stretches over the whole image */
+  display: flex;
+  font-size: 48px;
+  flex-direction: column;
+  align-items: center;     /* horizontal centre */
+  text-align: center;
+  color: #d22e29;            /* make sure it's readable on the image */
+  margin-top: 3%;   
+  margin-bottom: auto;        /* make sure it's readable on the image */
+}
+
+.sbctitle img {
+  position: absolute;
+  inset: 0;                /* stretches over the whole image */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centre */
+  align-items: center;     /* horizontal centre */
+  text-align: center;
+  color: #fff4d2; 
+  height: 25%;
+  width: 45%;
+}
+
+.sbc-bfqoty img {
+  width: 80%;
+  height: auto;
+  border-radius: 32px;
+  display: block;
+  margin-bottom: 1rem;
+  margin: auto;
+}
+
+.sbc-bfqoty h1 {
+  font-size: clamp(1.75rem, 6vw, 4rem);
+  text-align: center;
+  margin-top: 2rem;
+  color: #fff4d2;
+}
+
+.sbc-bfqoty p {
+  font-size: clamp(1rem, 3vw, 1.75rem);
+  text-align: left;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right:auto;
+  color: #fff4d2;
+  max-width: 70%;
+}
+
+.line {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sbc-bfqoty span {
+  border-left: 4px solid #e0b24a;
+  display: block;
+  height: 100px;
+  position: absolute;
+  margin-left: 50%;
+  
+ 
+}
