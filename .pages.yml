@@ -1,15 +1,56 @@
 media:
-  - name: assets
-    label: Website Assets
-    input: Website/Assets
-    output: /Website/Assets
+  - name: clients
+    label: Clients
+    input: Assets/Clients
+    output: /Assets/Clients
+    categories: [image, video]
+  - name: sbc
+    label: SBC
+    input: Assets/sbc
+    output: /Assets/sbc
+    categories: [image, video]
+  - name: collage
+    label: Collage
+    input: Assets/Collage
+    output: /Assets/Collage
+    categories: [image, video]
+  - name: home-page
+    label: Home Page
+    input: Assets/Home-Page
+    output: /Assets/Home-Page
+    categories: [image, video]
+  - name: cinematography
+    label: Cinematography
+    input: Assets/cinematography-collage
+    output: /Assets/cinematography-collage
+    categories: [image, video]
+  - name: photography
+    label: Photography Carousel
+    input: Assets/photography/carousel
+    output: /Assets/photography/carousel
+    categories: [image, video]
+
 content:
-  - name: pages
-    label: Pages
-    type: collection
-    path: docs
+  - name: galleries
+    label: Page Galleries
+    type: file
+    path: data/galleries.json
     fields:
-      - name: title
-        type: string
-      - name: body
-        type: rich-text
+      - name: photography
+        label: Photography Page Media
+        type: image
+        list: true
+        options:
+          media: photography
+      - name: sbc
+        label: SBC Page Media
+        type: image
+        list: true
+        options:
+          media: sbc
+      - name: cinematography
+        label: Cinematography Page Media
+        type: image
+        list: true
+        options:
+          media: cinematography
