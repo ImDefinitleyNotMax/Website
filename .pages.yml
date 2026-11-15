@@ -29,13 +29,28 @@ media:
     input: Assets/photography/carousel
     output: /Assets/photography/carousel
     categories: [image, video]
+
 content:
-  - name: pages
-    label: Pages
-    type: collection
-    path: docs
+  - name: galleries
+    label: Page Galleries
+    type: file
+    path: data/galleries.json
     fields:
-      - name: title
-        type: string
-      - name: body
-        type: rich-text
+      - name: photography
+        label: Photography Page Media
+        type: image
+        list: true
+        options:
+          media: photography
+      - name: sbc
+        label: SBC Page Media
+        type: image
+        list: true
+        options:
+          media: sbc
+      - name: cinematography
+        label: Cinematography Page Media
+        type: image
+        list: true
+        options:
+          media: cinematography
