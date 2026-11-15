@@ -58,10 +58,34 @@
     <h2>Film Photography</h2>
   </div>
 
+  <div id="dynamic-gallery"></div>
+
   <div class="digital-header">
     <h2>Digital Photography</h2>
   </div>
 
 
+
+
+
+
+  
+  <script>
+    fetch('/data/galleries.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('dynamic-gallery');
+        const items = data.photography || []; // Change 'photography' to 'sbc' or 'cinematography' on other pages
+  
+        items.forEach(filePath => {
+          const isVideo = /\.(mp4|webm|mov)$/i.test(filePath);
+          if (isVideo) {
+            container.innerHTML += `<video src="${filePath}" controls playsinline></video>`;
+          } else {
+            container.innerHTML += `<img src="${filePath}" alt="Gallery media" loading="lazy">`;
+          }
+        });
+      });
+  </script>
 </body>
 </html>
