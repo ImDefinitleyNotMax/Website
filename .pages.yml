@@ -37,13 +37,13 @@ content:
     path: data/galleries.json
     fields:
       - name: film_work
-        label: Client Work Gallery
+        label: Film Photography
         type: image
         list: true
         options:
-          media: clients
+          media: photography
       - name: digital_work
-        label: Personal Work Gallery
+        label: Digital Photography
         type: image
         list: true
         options:
