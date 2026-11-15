@@ -596,102 +596,150 @@ input[type=submit]:hover {
 
 /* photography Page */
 
+/* ---------- Carousel (moves by itself; click a photo to pause and enlarge it) ---------- */
 #slider {
   position: relative;
   width: 50%;
   height: 32vw;
-  margin: 150px auto;
-  font-family: 'Helvetica Neue', sans-serif;
+  margin: 6rem auto;
   perspective: 1400px;
   transform-style: preserve-3d;
 }
 
-input[type=radio] {
-  position: relative;
-  top: 108%;
-  left: 50%;
-  width: 18px;
-  height: 18px;
-  margin: 0 15px 0 0;
-  opacity: 0.4;
-  transform: translateX(-83px);
-  cursor: pointer;
-}
-
-
-input[type=radio]:nth-child(5) {
-  margin-right: 0px;
-}
-
-input[type=radio]:checked {
-  opacity: 1;
-}
-
-#slider label,
-#slider label img {
+#slider .slide {
   position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
-  color: white;
-  font-size: 70px;
-  font-weight: bold;
+  padding: 0;
+  border: 0;
   border-radius: 3px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 400ms ease;
+  background: none;
+  cursor: zoom-in;
+  transition: transform 400ms ease, filter 400ms ease, opacity 400ms ease, box-shadow 400ms ease;
 }
 
-#s1:checked ~ #slide1,
- #s2:checked ~ #slide2,
-  #s3:checked ~ #slide3,
-   #s4:checked ~ #slide4,
-    #s5:checked ~ #slide5 {
-  box-shadow: 0 13px 26px rgba(0,0,0, 0.3), 0 12px 6px rgba(0,0,0, 0.2);
+#slider .slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+#slider .slide:focus-visible { outline: 2px solid #e0b24a; outline-offset: 3px; }
+
+/* The script gives each photo a position: 0 is the middle one, -2 to 2 are the ones either side */
+#slider .slide[data-pos="0"] {
+  box-shadow: 0 13px 26px rgba(0, 0, 0, 0.3), 0 12px 6px rgba(0, 0, 0, 0.2);
   transform: translate3d(0%, 0, 0px);
 }
 
-#s1:checked ~ #slide2,
- #s2:checked ~ #slide3,
-  #s3:checked ~ #slide4,
-   #s4:checked ~ #slide5,
-    #s5:checked ~ #slide1 {
-  box-shadow: 0 6px 10px rgba(0,0,0, 0.3), 0 2px 2px rgba(0,0,0, 0.2);
+#slider .slide[data-pos="1"] {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
   transform: translate3d(20%, 0, -100px);
   filter: blur(2px) brightness(0.6);
 }
 
-#s1:checked ~ #slide3,
- #s2:checked ~ #slide4,
-  #s3:checked ~ #slide5,
-   #s4:checked ~ #slide1,
-    #s5:checked ~ #slide2 {
-  box-shadow: 0 1px 4px rgba(0,0,0, 0.4);
+#slider .slide[data-pos="2"] {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   transform: translate3d(40%, 0, -250px);
-  filter: blur(4px)brightness(0.4);
+  filter: blur(4px) brightness(0.4);
 }
 
-#s1:checked ~ #slide5,
- #s2:checked ~ #slide1,
-  #s3:checked ~ #slide2,
-   #s4:checked ~ #slide3,
-    #s5:checked ~ #slide4 {
-  box-shadow: 0 6px 10px rgba(0,0,0, 0.3), 0 2px 2px rgba(0,0,0, 0.2);
+#slider .slide[data-pos="-1"] {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
   transform: translate3d(-20%, 0, -100px);
-  filter: blur(2px)brightness(0.6);
+  filter: blur(2px) brightness(0.6);
 }
 
-#s1:checked ~ #slide4,
- #s2:checked ~ #slide5,
-  #s3:checked ~ #slide1,
-   #s4:checked ~ #slide2,
-    #s5:checked ~ #slide3 {
-  box-shadow: 0 1px 4px rgba(0,0,0, 0.4);
+#slider .slide[data-pos="-2"] {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   transform: translate3d(-40%, 0, -250px);
-  filter: blur(4px)brightness(0.4);
+  filter: blur(4px) brightness(0.4);
+}
+
+#slider .slide[data-pos="hidden"] {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0%, 0, -400px);
+}
+
+/* The side photos swing past the screen edge, so stop that causing sideways scrolling */
+body {
+  overflow-x: hidden;     /* fallback for older iPhones */
+  overflow-x: clip;
+}
+
+/* Tablet and phone: bigger carousel, no huge gaps */
+@media (max-width: 900px) {
+  #slider {
+    width: 80%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    margin: 3rem auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #slider .slide { transition: none; }
+}
+
+/* ---------- Enlarged photo viewer ---------- */
+html.lb-open { overflow: hidden; }
+
+#lightbox {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+#lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox::backdrop { background: rgba(0, 0, 0, 0.92); }
+
+#lightbox img {
+  max-width: 92vw;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lb-btn {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lb-btn:hover { background: rgba(255, 255, 255, 0.28); }
+.lb-btn:focus-visible { outline: 2px solid #e0b24a; outline-offset: 2px; }
+
+.lb-close { top: 1rem; right: 1rem; }
+.lb-prev  { left: 1rem;  top: 50%; transform: translateY(-50%); }
+.lb-next  { right: 1rem; top: 50%; transform: translateY(-50%); }
+
+/* On phones the arrows sit under the photo so they don't cover it */
+@media (max-width: 600px) {
+  #lightbox img { max-height: 78vh; }
+  .lb-prev, .lb-next { top: auto; bottom: 1.25rem; transform: none; }
+  .lb-prev { left: calc(50% - 56px); }
+  .lb-next { right: auto; left: calc(50% + 8px); }
 }
 
 .film-header, .digital-header {

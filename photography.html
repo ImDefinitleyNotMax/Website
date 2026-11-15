@@ -39,20 +39,20 @@
     </h1>
   </div>
   
-  <section id="slider">
-    <input type="radio" name="slider" id="s1" checked>
-    <input type="radio" name="slider" id="s2">
-    <input type="radio" name="slider" id="s3">
-    <input type="radio" name="slider" id="s4">
-    <input type="radio" name="slider" id="s5">
-
-    <label for="s1" id="slide1"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 18.jpeg" alt=""></label>
-    <label for="s2" id="slide2"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 19.jpeg" alt=""></label>
-    <label for="s3" id="slide3"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 2.jpeg" alt=""></label>
-    <label for="s4" id="slide4"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 29.jpeg" alt=""></label>
-    <label for="s5" id="slide5"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 30.jpeg" alt=""></label>
-  
+  <section id="slider" aria-label="Photo carousel">
+    <button type="button" class="slide" aria-label="View photo 1 larger"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 18.jpeg" alt=""></button>
+    <button type="button" class="slide" aria-label="View photo 2 larger"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 19.jpeg" alt=""></button>
+    <button type="button" class="slide" aria-label="View photo 3 larger"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 2.jpeg" alt=""></button>
+    <button type="button" class="slide" aria-label="View photo 4 larger"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 29.jpeg" alt=""></button>
+    <button type="button" class="slide" aria-label="View photo 5 larger"><img src="Assets/photography/carousel/Kpan400 Riots Aftermath Rescanned 08_26 - 30.jpeg" alt=""></button>
   </section>
+
+  <dialog id="lightbox" aria-label="Photo viewer">
+    <button type="button" class="lb-btn lb-close" aria-label="Close">&times;</button>
+    <button type="button" class="lb-btn lb-prev" aria-label="Previous photo">&lsaquo;</button>
+    <img src="" alt="">
+    <button type="button" class="lb-btn lb-next" aria-label="Next photo">&rsaquo;</button>
+  </dialog>
 
   <div class="film-header">
     <h2>Film Photography</h2>
@@ -97,6 +97,88 @@
         renderGallery(data.digital_work, 'digital-gallery');
       });
   </script>
-  </div>
+
+  <script>
+    // Carousel: moves on its own, click a photo to pause and view it larger
+    (function () {
+      var slides = Array.prototype.slice.call(document.querySelectorAll('#slider .slide'));
+      var n = slides.length;
+      var dialog = document.getElementById('lightbox');
+      if (!n || !dialog) return;
+
+      var lbImg = dialog.querySelector('img');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var DELAY = 3500;               // milliseconds each photo stays in the middle
+      var current = 0;
+      var timer = null;
+
+      function render() {
+        slides.forEach(function (s, i) {
+          var d = i - current;
+          if (d > n / 2) d -= n;       // shortest way round the loop
+          if (d < -n / 2) d += n;
+          var wrapped = s._d !== undefined && Math.abs(d - s._d) > 1;
+          if (wrapped) s.style.transition = 'none';   // a photo jumping to the other side shouldn't fly across
+          s.dataset.pos = Math.abs(d) <= 2 ? d : 'hidden';
+          s.tabIndex = Math.abs(d) <= 2 ? 0 : -1;
+          if (wrapped) { void s.offsetWidth; s.style.transition = ''; }
+          s._d = d;
+        });
+      }
+
+      function go(step) { current = (current + step + n) % n; render(); }
+      function start() { if (!timer && !reduceMotion) timer = setInterval(function () { go(1); }, DELAY); }
+      function stop() { clearInterval(timer); timer = null; }
+
+      function showInViewer() {
+        var s = slides[current];
+        lbImg.src = s.dataset.full || s.querySelector('img').src;   // optional data-full="bigger-file.jpg"
+      }
+
+      function openViewer(i) {
+        stop();
+        current = i;
+        render();
+        showInViewer();
+        document.documentElement.classList.add('lb-open');
+        dialog.showModal();
+      }
+
+      function stepViewer(step) { go(step); showInViewer(); }
+
+      slides.forEach(function (s, i) { s.addEventListener('click', function () { openViewer(i); }); });
+
+      dialog.querySelector('.lb-close').addEventListener('click', function () { dialog.close(); });
+      dialog.querySelector('.lb-prev').addEventListener('click', function () { stepViewer(-1); });
+      dialog.querySelector('.lb-next').addEventListener('click', function () { stepViewer(1); });
+      dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });   // click the dark background to close
+
+      dialog.addEventListener('close', function () {
+        document.documentElement.classList.remove('lb-open');
+        start();                       // carousel carries on from the photo you were looking at
+      });
+
+      dialog.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') stepViewer(-1);
+        if (e.key === 'ArrowRight') stepViewer(1);
+      });
+
+      var touchX = null;               // swipe left or right in the viewer
+      dialog.addEventListener('touchstart', function (e) { touchX = e.changedTouches[0].clientX; }, { passive: true });
+      dialog.addEventListener('touchend', function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) > 50) stepViewer(dx < 0 ? 1 : -1);
+      });
+
+      document.addEventListener('visibilitychange', function () {   // don't run in a background tab
+        if (document.hidden) stop(); else if (!dialog.open) start();
+      });
+
+      render();
+      start();
+    })();
+  </script>
 </body>
 </html>
