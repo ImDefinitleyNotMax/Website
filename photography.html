@@ -56,36 +56,41 @@
 
   <div class="film-header">
     <h2>Film Photography</h2>
+    <div id="film-gallery"></div>
   </div>
-
-  <div id="dynamic-gallery"></div>
-
+  
   <div class="digital-header">
     <h2>Digital Photography</h2>
+    <div id="digital-gallery"></div> <!-- Changed from class to id -->
   </div>
-
-
-
-
-
-
   
   <script>
     fetch('/data/galleries.json')
       .then(response => response.json())
       .then(data => {
-        const container = document.getElementById('dynamic-gallery');
-        const items = data.photography || []; // Change 'photography' to 'sbc' or 'cinematography' on other pages
+        // Helper function to render a gallery into a specific container element
+        function renderGallery(items, containerId) {
+          const container = document.getElementById(containerId);
+          if (!container) return;
+          
+          container.innerHTML = ''; // Clear existing content
+          const mediaList = items || [];
   
-        items.forEach(filePath => {
-          const isVideo = /\.(mp4|webm|mov)$/i.test(filePath);
-          if (isVideo) {
-            container.innerHTML += `<video src="${filePath}" controls playsinline></video>`;
-          } else {
-            container.innerHTML += `<img src="${filePath}" alt="Gallery media" loading="lazy">`;
-          }
-        });
+          mediaList.forEach(filePath => {
+            const isVideo = /\.(mp4|webm|mov)$/i.test(filePath);
+            if (isVideo) {
+              container.innerHTML += `<video src="${filePath}" controls playsinline></video>`;
+            } else {
+              container.innerHTML += `<img src="${filePath}" alt="Gallery image" loading="lazy">`;
+            }
+          });
+        }
+  
+        // Render both sections using the correct JSON property names
+        renderGallery(data.film_work, 'film-gallery');
+        renderGallery(data.digital_work, 'digital-gallery');
       });
   </script>
+  </div>
 </body>
 </html>
