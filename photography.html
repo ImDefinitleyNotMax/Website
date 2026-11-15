@@ -77,13 +77,19 @@
           const mediaList = items || [];
   
           mediaList.forEach(filePath => {
-            const isVideo = /\.(mp4|webm|mov)$/i.test(filePath);
-            if (isVideo) {
-              container.innerHTML += `<video src="${filePath}" controls playsinline></video>`;
-            } else {
-              container.innerHTML += `<img src="${filePath}" alt="Gallery image" loading="lazy">`;
-            }
-          });
+  const isVideo = /\.(mp4|webm|mov)$/i.test(filePath);
+  if (isVideo) {
+    container.innerHTML += `
+      <div class="gallery-item">
+        <video src="${filePath}" controls playsinline></video>
+      </div>`;
+  } else {
+    container.innerHTML += `
+      <div class="gallery-item">
+        <img src="${filePath}" alt="Gallery image" loading="lazy">
+      </div>`;
+  }
+});
         }
   
         // Render both sections using the correct JSON property names

@@ -701,28 +701,45 @@ input[type=radio]:checked {
   color: #fff4d2;
 }
 
-/* Container layout for both galleries */
+/* Column layout */
 #film-gallery, #digital-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
+  column-count: 3;
+  column-gap: 20px;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  padding: 20px;
 }
 
-/* Individual gallery images for both galleries */
-#film-gallery img, #digital-gallery img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover; /* Keeps images cropped neatly without distortion */
+@media (max-width: 900px) {
+  #film-gallery, #digital-gallery { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+  #film-gallery, #digital-gallery { column-count: 1; }
+}
+
+/* The wrapper card controls the spacing, shadows, and column breaks */
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 20px;
   border-radius: 8px;
+  overflow: hidden; /* This traps the hover scale effect so it never bleeds out! */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #1a1a1a;
+}
+
+/* Images fill the wrapper naturally */
+#film-gallery img, #digital-gallery img, 
+#film-gallery video, #digital-gallery video {
+  width: 100%;
+  height: auto;
+  display: block;
   transition: transform 0.3s ease;
 }
 
-/* Hover effect */
-#film-gallery img:hover, #digital-gallery img:hover {
+/* Smooth hover zoom contained safely */
+#film-gallery img:hover, #digital-gallery img:hover,
+#film-gallery video:hover, #digital-gallery video:hover {
   transform: scale(1.03);
 }
