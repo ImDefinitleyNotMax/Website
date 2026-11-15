@@ -1,8 +1,28 @@
 media:
-  - name: assets
-    label: Website Assets
-    input: Website/Assets
-    output: /Website/Assets
+  - name: clients
+    label: Clients
+    input: Website/Assets/Clients
+    output: /Website/Assets/Clients
+    categories: [image, video]
+  - name: sbc
+    label: SBC
+    input: Website/Assets/sbc
+    output: /Website/Assets/sbc
+    categories: [image, video]
+  - name: collage
+    label: Collage
+    input: Website/Assets/Collage
+    output: /Website/Assets/Collage
+    categories: [image, video]
+  - name: home-page
+    label: Home Page
+    input: Website/Assets/Home-Page
+    output: /Website/Assets/Home-Page
+    categories: [image, video]
+  - name: cinematography
+    label: Cinematography
+    input: Website/Assets/cinematography-collage
+    output: /Website/Assets/cinematography-collage
     categories: [image, video]
 content:
   - name: pages
