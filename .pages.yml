@@ -1,8 +1,8 @@
 media:
-  - name: site-media
-    label: Media Library
-    input: assets  
-    output: /assets/
+  - name: assets
+    label: Website Assets
+    input: Website/Assets
+    output: /Website/Assets
 content:
   - name: pages
     label: Pages
