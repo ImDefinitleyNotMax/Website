@@ -3,6 +3,7 @@ media:
     label: Website Assets
     input: Website/Assets
     output: /Website/Assets
+    categories: [image, video]
 content:
   - name: pages
     label: Pages
