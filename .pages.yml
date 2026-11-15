@@ -1,4 +1,8 @@
-media: media
+media:
+  - name: site-media
+    label: Media Library
+    input: assets  
+    output: /assets/
 content:
   - name: pages
     label: Pages
