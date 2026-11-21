@@ -622,8 +622,16 @@ input[type=submit]:hover {
   font-weight: normal;
 }
 
-.team-captains img {
-  width: 20% ;
+.captain-photos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.captain-photos img {
+  width: clamp(120px, 28vw, 280px);
   height: auto;
   border-radius: 32px;
   display: block;
